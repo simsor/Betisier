@@ -45,9 +45,9 @@ CREATE TABLE IF NOT EXISTS `citation` (
 INSERT INTO `citation` (`cit_num`, `per_num`, `per_num_valide`, `per_num_etu`, `cit_libelle`, `cit_date`, `cit_valide`, `cit_date_valide`, `cit_date_depo`) VALUES
 (1, 55, 1, 53, 'Tous les 4, vous commencez à me casser les --- !!!', '2014-12-25', b'1', '2014-12-25', '2014-12-24 23:00:00'),
 (2, 38, 53, 38, 'Les notes, c''est comme l''eau : plus on pompe, plus ça monte', '2014-12-25', b'1', '2014-12-25', '2014-12-24 23:00:00'),
-(3, 56, 1, 54, 'C plus fort que toi', '2014-12-25', b'1', '2014-12-25', '2014-12-24 23:00:00'),
+(3, 56, 1, 54, 'C plus fort que toi', '2014-12-25', '1', '2014-12-25', '2014-12-24 23:00:00'),
 (4, 38, 53, 38, 'Ce qui fait marcher l''informatique, c''est la fumée car lorsque la fumée sort du pc, plus rien ne fonctionne', '2014-12-25', b'1', '2014-12-25', '2014-12-24 23:00:00'),
-(19, 55, NULL, 3, 'Et surtout notez bien ce que je viens d''effacer !	\r\n							\r\n			', '2014-12-25', b'0', NULL, '2014-12-24 23:00:00'),
+(19, 55, NULL, 3, 'Et surtout notez bien ce que je viens d''effacer !', '2014-12-25', b'0', NULL, '2014-12-24 23:00:00'),
 (54, 1, 3, 3, 'Vous avez des prétentions d''un cheval de course et les résultats d''un âne.', '2015-01-15', b'0', '2015-01-14', '2015-01-12 20:58:01'),
 (55, 1, NULL, 3, 'Je vous conseille d''arrêter l''informatique. je vous conseille le DUT GEA ou TC', '2015-01-24', b'0', NULL, '2015-01-13 05:27:51');
 
