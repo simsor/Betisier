@@ -1,0 +1,17 @@
+{{> enTete}}
+{{> menu}}
+
+ <h1>Liste des villes enregistrées</h1>
+<p>Il y a actuellement {{nbVille}} villes enregistrées</p>
+
+<table>
+     <tr>
+       <th>Numéro</th>
+       <th>Nom</th>
+     </tr>                               
+ {{#each listeVille}}
+    <tr><td>{{this.vil_num}}</td><td>{{this.vil_nom}}</td></tr>
+ {{/each}}
+ </table>
+            
+ 
