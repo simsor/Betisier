@@ -7,9 +7,9 @@ var VilleController = require('./controllers/VilleController');
 // Routes
 module.exports = function(app){
      
-    // Main Routes
-     
+// Main Routes     
     app.get('/', HomeController.Index);
+    
 // citations
     app.get('/listerCitation', CitationController.ListerCitation);
     app.get('/ajouterCitation', CitationController.AjouterCitation); 
@@ -28,7 +28,8 @@ module.exports = function(app){
  //personne
    app.get('/listerPersonne', PersonneController.ListerPersonne);   
    app.get('/ajouterPersonne', PersonneController.AjouterPersonne);   
-                
+
+// tout le reste              
   app.get('*', HomeController.Index);
   app.post('*', HomeController.Index);
  

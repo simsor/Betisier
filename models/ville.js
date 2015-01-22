@@ -1,3 +1,9 @@
+/*
+* config.Db contient les parametres de connection à la base de données
+* il va créer aussi un pool de connexions utilisables
+* sa méthode getConnection permet de se connecter à MySQL
+*
+*/
 var db = require('../configDb');
 
 /*
