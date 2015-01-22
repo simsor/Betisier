@@ -4,41 +4,43 @@ var express         = require('express'),
     bodyParser      = require('body-parser'), //pour récuperer les résultats des post
 	 handlebars  	  = require('express-handlebars'), hbs,
 	 http = require('http'),
-	 path = require('path'),
-	 fs = require('fs');
+	 path = require('path');
 
 var app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('port', 6800);
 app.set('views', path.join(__dirname, 'views'));
+
+// routes static, le routeur n'y aura pas accès
 app.use('/image',express.static(path.join(__dirname+ '/public/image')));
 app.use('/css',express.static(path.join(__dirname+'/public/css')));
+
 app.use(cookieParser());
 
 app.use(session({
     secret: 'nC0@#1pM/-0qA1+é',
     name: 'Betisier',
-    // store: sessionStore, // connect-mongo session store
-    // proxy: true,
     resave: true,
     saveUninitialized: true
 }));
 
-// secure : true pour httpS
  
 /* express-handlebars - https://github.com/ericf/express-handlebars
-A Handlebars view engine for Express. */
+*  Handlebars : moteur de template pour Express.
+* il va gérer les vues
+*/
 hbs = handlebars.create({
-   defaultLayout: 'main', // nom de la page par defaut ici main.handlebars
+   defaultLayout: 'main', // nom de la page par defaut ici main.handlebars (structure de base HTML)
    
-   partialsDir: ['views/partials/']
+   partialsDir: ['views/partials/'] // le vues partielles (le code HTML qui se répette dans toutes les pages)
+   // les vues qui changent suivant le choix de l'utilisateur sont à la racine de views
 });
  
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-// send app to router
+// chargement du routeur
 require('./router')(app); 
 
 
