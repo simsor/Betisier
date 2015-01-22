@@ -1,4 +1,4 @@
-/*
+<!-- 
 * Celle vue permet d'afficher l'intégralité des Villes 
 * la méthode ListerVille du controleur : villeControleur.js
 * lui passe listeVille  et nbVille .
@@ -10,11 +10,11 @@
 * nbVille contient par exemple : 3
 * title est passé à main.handlebars
 * il sera inclus dans cette balise : <title> {{title}}</title>
-*/ 
+-->
 
 
 
-{{> enTete}} // inclusion des vues partielles
+{{> enTete}} <!--   inclusion des vues partielles  -->
 {{> menu}}
 
  <h1>Liste des villes enregistrées</h1>
@@ -25,7 +25,7 @@
        <th>Numéro</th>
        <th>Nom</th>
      </tr>                               
- {{#each listeVille}} // parcours de listeVille
+ {{#each listeVille}} <!--  parcours de listeVille -->
     <tr><td>{{this.vil_num}}</td><td>{{this.vil_nom}}</td></tr>
  {{/each}}
  </table>
