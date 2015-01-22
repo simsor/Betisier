@@ -1,6 +1,6 @@
 {
     "name": "BetisierNodeJS",
-    "description": "Un exemple Express.js application utilisant MVC Tamplate",
+    "description": "Un exemple Express.js application utilisant MVC Template",
     "private": true,
     "version": "0.1.4",
     "dependencies": {
