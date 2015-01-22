@@ -11,6 +11,7 @@ module.exports.ListerCitation = 	function(request, response){
 // ////////////////////////////////////////////// A J O U T E R     C I T A T I O N 
    
 module.exports.AjouterCitation = 	function(request, response){
+	   response.title = 'Ajouter des citations';
    response.render('ajouterCitation', response);
      
   } ;   
