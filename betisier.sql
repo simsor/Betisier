@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 21 Janvier 2015 à 08:58
--- Version du serveur :  5.5.40-0ubuntu1-log
+-- Généré le :  Sam 24 Janvier 2015 à 10:09
+-- Version du serveur :  5.5.41-0ubuntu0.14.10.1-log
 -- Version de PHP :  5.5.12-2ubuntu4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -45,11 +45,11 @@ CREATE TABLE IF NOT EXISTS `citation` (
 INSERT INTO `citation` (`cit_num`, `per_num`, `per_num_valide`, `per_num_etu`, `cit_libelle`, `cit_date`, `cit_valide`, `cit_date_valide`, `cit_date_depo`) VALUES
 (1, 55, 1, 53, 'Tous les 4, vous commencez à me casser les --- !!!', '2014-12-25', b'1', '2014-12-25', '2014-12-24 23:00:00'),
 (2, 38, 53, 38, 'Les notes, c''est comme l''eau : plus on pompe, plus ça monte', '2014-12-25', b'1', '2014-12-25', '2014-12-24 23:00:00'),
-(3, 56, 1, 54, 'C plus fort que toi', '2014-12-25', '1', '2014-12-25', '2014-12-24 23:00:00'),
+(3, 56, 1, 54, 'C plus fort que toi', '2014-12-25', b'1', '2014-12-25', '2014-12-24 23:00:00'),
 (4, 38, 53, 38, 'Ce qui fait marcher l''informatique, c''est la fumée car lorsque la fumée sort du pc, plus rien ne fonctionne', '2014-12-25', b'1', '2014-12-25', '2014-12-24 23:00:00'),
 (19, 55, NULL, 3, 'Et surtout notez bien ce que je viens d''effacer !', '2014-12-25', b'0', NULL, '2014-12-24 23:00:00'),
 (54, 1, 3, 3, 'Vous avez des prétentions d''un cheval de course et les résultats d''un âne.', '2015-01-15', b'0', '2015-01-14', '2015-01-12 20:58:01'),
-(55, 1, NULL, 3, 'Je vous conseille d''arrêter l''informatique. Inscrivez-vous plutôt en DUT GEA ou TC', '2015-01-24', b'0', NULL, '2015-01-13 05:27:51');
+(55, 1, NULL, 3, 'Je vous suggère d''arrêter l''informatique. Inscrivez-vous en DUT GEA ou TC', '2015-01-24', b'0', NULL, '2015-01-13 05:27:51');
 
 -- --------------------------------------------------------
 
@@ -191,19 +191,19 @@ CREATE TABLE IF NOT EXISTS `personne` (
 --
 
 INSERT INTO `personne` (`per_num`, `per_nom`, `per_prenom`, `per_tel`, `per_mail`, `per_admin`, `per_login`, `per_pwd`) VALUES
-(1, 'Marley', 'Bob', '0555555555', 'Bob@unilim.fr', 0, 'Bob', 'df90e13fa7699df8a377946815cf5dc4'),
-(3, 'Duchemin', 'Paul', '0555555554', 'paul.d@yahoo.fr', 0, 'Paul', 'df90e13fa7699df8a377946815cf5dc4'),
-(38, 'Michu', 'Marcel', '0555555555', 'Michu@sfr.fr', 0, 'Marcel', 'df90e13fa7699df8a377946815cf5dc4'),
-(39, 'Renard', 'Pierrot', '0655555555', 'Pierrot@gmail.fr', 0, 'sql', 'df90e13fa7699df8a377946815cf5dc4'),
-(53, 'Delmas', 'Sophie', '0789562314', 'Sophie@unilim.fr', 0, 'Soso', 'df90e13fa7699df8a377946815cf5dc4'),
-(54, 'Dupuy', 'Pascale', '0554565859', 'pascale@free.fr', 0, 'Pascale', 'df90e13fa7699df8a377946815cf5dc4'),
-(55, 'Chastagner', 'Michel', '0555555555', 'Michel.C@yahoo.fr', 1, 'mc', 'df90e13fa7699df8a377946815cf5dc4'),
-(56, 'Monediere', 'Thierrry', '0555555552', 'Th.mo@orange.fr', 0, 'TM', 'df90e13fa7699df8a377946815cf5dc4'),
-(58, 'Yves', 'Quentin', '0555555550', 'Y.Q@hotmail.fr', 0, 'yves', 'df90e13fa7699df8a377946815cf5dc4'),
-(59, 'Lassont', 'Florian', '0555555553', 'Florain.L@hotmail.fr', 0, 'florian', 'df90e13fa7699df8a377946815cf5dc4'),
-(63, 'Dumont', 'Jacques', '0555555554', 'jacques.dumont@unilim.fr', 0, 'jd', 'df90e13fa7699df8a377946815cf5dc4'),
-(64, 'Martin', 'Martine', '0555555555', 'martine.martin@unilim.fr', 0, 'mm', 'df90e13fa7699df8a377946815cf5dc4'),
-(67, 'Beldonne', 'Isabelle', '0555555554', 'Bel.isa@yahoo.fr', 1, 'riri', 'df90e13fa7699df8a377946815cf5dc4');
+(1, 'Marley  ', 'Bob', '0555555555', 'Bob@unilim.fr', 0, 'Bob', 'ey8hR6Z0AHuSyw1oVu4LRmDCuYY+CEPfJJKBh/Q+sGI='),
+(3, 'Duchemin    ', 'Paul    ', '0555555554', 'paul.d@yahoo.fr', 0, 'Paul    ', 'ey8hR6Z0AHuSyw1oVu4LRmDCuYY+CEPfJJKBh/Q+sGI='),
+(38, 'Michu  ', 'Marcel  ', '0555555555', 'Michu@sfr.fr', 0, 'Marcel  ', 'ey8hR6Z0AHuSyw1oVu4LRmDCuYY+CEPfJJKBh/Q+sGI='),
+(39, 'Renard ', 'Pierrot ', '0655555555', 'Pierrot@gmail.fr', 0, 'sql ', 'ey8hR6Z0AHuSyw1oVu4LRmDCuYY+CEPfJJKBh/Q+sGI='),
+(53, 'Delmas    ', 'Sophie    ', '0789562314', 'Sophie@unilim.fr', 0, 'Soso', 'ey8hR6Z0AHuSyw1oVu4LRmDCuYY+CEPfJJKBh/Q+sGI='),
+(54, 'Dupuy ', 'Pascale ', '0554565859', 'pascale@free.fr', 0, 'Pascale ', 'ey8hR6Z0AHuSyw1oVu4LRmDCuYY+CEPfJJKBh/Q+sGI='),
+(55, 'Chastagner', 'Michel       ', '0555555555', 'Michel.C@yahoo.fr', 1, 'mc', 'ey8hR6Z0AHuSyw1oVu4LRmDCuYY+CEPfJJKBh/Q+sGI='),
+(56, 'Monediere  ', 'Thierrry  ', '0555555552', 'Th.mo@orange.fr', 0, 'TM  ', 'ey8hR6Z0AHuSyw1oVu4LRmDCuYY+CEPfJJKBh/Q+sGI='),
+(58, 'Yves  ', 'Quentin  ', '0555555550', 'Y.Q@hotmail.fr', 0, 'yves  ', 'ey8hR6Z0AHuSyw1oVu4LRmDCuYY+CEPfJJKBh/Q+sGI='),
+(59, 'Lassont  ', 'Florian  ', '0555555553', 'Florain.L@hotmail.fr', 0, 'florian  ', 'ey8hR6Z0AHuSyw1oVu4LRmDCuYY+CEPfJJKBh/Q+sGI='),
+(63, 'Dumont ', 'Jacques ', '0555555554', 'jacques.dumont@unilim.fr', 0, 'jd ', 'ey8hR6Z0AHuSyw1oVu4LRmDCuYY+CEPfJJKBh/Q+sGI='),
+(64, 'Martin ', 'Martine ', '0555555555', 'martine.martin@unilim.fr', 0, 'mm', 'ey8hR6Z0AHuSyw1oVu4LRmDCuYY+CEPfJJKBh/Q+sGI='),
+(67, 'Beldonne', 'Isabelle', '0555555554', 'Bel.isa@yahoo.fr', 1, 'riri', 'ey8hR6Z0AHuSyw1oVu4LRmDCuYY+CEPfJJKBh/Q+sGI=');
 
 -- --------------------------------------------------------
 
