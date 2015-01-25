@@ -1,8 +1,8 @@
-var HomeController = require('./controllers/HomeController');
-var ConnectController = require('./controllers/ConnectController');
-var PersonneController = require('./controllers/PersonneController');
-var CitationController = require('./controllers/CitationController');
-var VilleController = require('./controllers/VilleController');
+var HomeController = require('./../controllers/HomeController');
+var ConnectController = require('./../controllers/ConnectController');
+var PersonneController = require('./../controllers/PersonneController');
+var CitationController = require('./../controllers/CitationController');
+var VilleController = require('./../controllers/VilleController');
 
 // Routes
 module.exports = function(app){

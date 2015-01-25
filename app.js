@@ -41,7 +41,7 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // chargement du routeur
-require('./router')(app); 
+require('./router/router')(app); 
 
 
 http.createServer(app).listen(app.get('port'), function(){
