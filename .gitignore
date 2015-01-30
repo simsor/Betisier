@@ -2,4 +2,4 @@
 # Ignorer tous les fichiers nommés *.*~
 *.*~
 # Ignorer tous le repertoire node_modules
-node_module/*
+node_modules/*
