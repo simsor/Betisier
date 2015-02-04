@@ -1,3 +1,20 @@
 {{> enTete}}
 {{> menu}}
  <h1>Liste des personnes enregistrées</h1>
+ <p>Actuellement {{nbPersonnes}} personnes enregistrées
+
+   <table>
+     <tr>
+       <th>Numéro</th>
+       <th>Nom</th>
+       <th>Prénom</th>
+     </tr>
+     {{#each listePersonne}}
+     <tr>
+       <td>{{this.per_num}}</td>
+       <td>{{this.per_nom}}</td>
+       <td>{{this.per_prenom}}</td>
+     </tr>
+     {{/each}}
+   </table>
+   <p>Cliquez sur le numéro de la personne pour obtenir plus d'informations</p>
