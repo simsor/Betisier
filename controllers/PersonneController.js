@@ -26,8 +26,8 @@ module.exports.DetailPersonne = function(request, response){
         console.log(err);
         return
      }
-     response.isEtudiant = result['dep_num'] != undefined;
-     response.donnees = result;
+     response.isEtudiant = result[0]['dep_nom'] != undefined;
+     response.donnees = result[0];
 
      response.render('detailPersonne', response);
    });
