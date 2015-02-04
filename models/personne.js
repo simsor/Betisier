@@ -45,4 +45,23 @@ module.exports.getListePersonne = function(callback) {
 			connexion.release();
 		}
 	});
+};
+
+/*
+* Récupérer le détail d'une personne
+* @return Un tableau d'une Personne avec le prénom, le mail, le téléphone, le département et la ville
+*/
+module.exports.getDetailPersonne = function(num, callback) {
+	// connexion a la base de donnée
+	db.getConnection(function(err, connexion) {
+		if (! err) {
+			var requete = 'SELECT per_nom, per_prenom, per_mail, per_tel, dep_nom, vil_nom, sal_telprof, fon_libelle FROM personne p LEFT OUTER JOIN etudiant e ON e.per_num=p.per_num LEFT OUTER JOIN departement d ON e.dep_num=d.dep_num LEFT OUTER JOIN ville v ON v.vil_num=d.vil_num LEFT OUTER JOIN salarie s ON s.per_num=p.per_num LEFT OUTER JOIN fonction f ON f.fon_num=s.fon_num WHERE p.per_num='+connexion.escape(num);
+
+			// envoi de la requete à la BD
+			connexion.query(requete, callback);
+
+			// retour de la connexion dans le pool
+			connexion.release();
+		}
+	});
 }

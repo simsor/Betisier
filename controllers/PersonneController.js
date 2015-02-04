@@ -13,7 +13,23 @@ module.exports.ListerPersonne = function(request, response){
      }
      response.nbPersonnes = result.length;
      response.listePersonne = result;
-     response.render('listerPersonne', response);   
+     response.render('listerPersonne', response);
+   });
+};
+
+// ////////////////////////////////////////////// D E T A I L     P E R S O N N E
+
+module.exports.DetailPersonne = function(request, response){
+   response.title = 'Détail de la personne';
+   model.getDetailPersonne(request.params.num, function (err, result) {
+     if (err) {
+        console.log(err);
+        return
+     }
+     response.isEtudiant = result['dep_num'] != undefined;
+     response.donnees = result;
+
+     response.render('detailPersonne', response);
    });
 };
 
