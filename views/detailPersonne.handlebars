@@ -1,0 +1,31 @@
+{{> enTete}}
+{{> menu}}
+
+<h1>Détail sur {{#if isEtudiant}} l'étudiant {{else}} le salarié {{/if}} {{donnees.per_nom}}</h1>
+
+<table>
+  <tr>
+    <th>Prénom</th>
+    <th>Mail</th>
+    <th>Tel</th>
+    {{#if isEtudiant}}
+    <th>Département</th>
+    <th>Ville</th>
+    {{else}}
+    <th>Tel pro</th>
+    <th>Fonction</th>
+    {{/if}}
+  </tr>
+  <tr>
+    <td>{{donnees.per_prenom}}</td>
+    <td>{{donnees.per_mail}}</td>
+    <td>{{donnees.per_tel}}</td>
+    {{#if isEtudiant}}
+    <td>{{donnees.dep_nom}}</td>
+    <td>{{donnees.vil_nom}}</td>
+    {{else}}
+    <td>{{donnees.sal_telprof}}</td>
+    <td>{{donnees.fon_libelle}}</td>
+    {{/if}}
+  </tr>
+</table>
