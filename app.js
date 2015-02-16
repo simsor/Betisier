@@ -40,9 +40,14 @@ hbs = handlebars.create({
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+// On permet d'accéder aux variables de session depuis les templates
+app.use(function(req, res, next) {
+    res.locals.session = req.session;
+    next();
+});
+
 // chargement du routeur
 require('./router/router')(app); 
-
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Serveur Node.js en attente sur le port ' + app.get('port'));
