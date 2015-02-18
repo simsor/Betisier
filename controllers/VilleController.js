@@ -46,8 +46,8 @@ module.exports.AjouterVilleOk = function(request, response){
         else {
           response.villeOk = true;
           response.vil_nom = request.body.vil_nom;
-          response.render('ajoutVilleOk', response);
         }
+        response.render('ajoutVilleOk', response);
     });
 };
 
@@ -58,15 +58,6 @@ module.exports.AjouterVille = function(request, response){
 response.title = 'Ajouter une ville';
 response.render('ajoutVille', response);
 
-};
-
-
-   // ////////////////////////////////////////////// I N S E R E R     V I L L E
-
-module.exports.InsertVille = function(request, response){
-    response.title = 'Insertion d\'une ville';
-
- 	response.render('ajoutVille', response);
 };
 
    // ////////////////////////////////////////////// M O D I F I E R     V I L L E

@@ -1,0 +1,21 @@
+{{> enTete}}
+{{> menu}}
+<h1>Ajouter un étudiant</h1>
+<form method="post">
+  <label>Année :
+    <select name="div_num">
+      {{#each liste_divisions}}
+        <option value="{{this.div_num}}">{{this.div_nom}}</option>
+      {{/each}}
+    </select>
+  </label>
+  <br>
+  <label>Département
+    <select name="dep_num">
+      {{#each liste_departements}}
+        <option value="{{this.dep_num}}">{{this.dep_nom}}</option>
+      {{/each}}
+    </select>
+  </label>
+  <br>
+  <input type="submit" value="Valider">

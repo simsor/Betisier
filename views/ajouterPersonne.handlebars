@@ -1,3 +1,37 @@
 {{> enTete}}
-{{> menu}}	
+{{> menu}}
 <h1>Ajouter des personnes</h1>
+<form method="post">
+  <label>Nom :
+    <input type="text" name="per_nom">
+  </label>
+  <br>
+  <label>Prénom :
+    <input type="text" name="per_prenom">
+  </label>
+  <br>
+  <label>Téléphone :
+    <input type="text" name="per_tel">
+  </label>
+  <br>
+  <label>Mail :
+    <input type="text" name="per_mail">
+  </label>
+  <br>
+  <label>Login :
+    <input type="text" name="per_login">
+  </label>
+  <br>
+  <label>Mot de passe :
+    <input type="password" name="per_pwd">
+  </label>
+  <br>
+  <label>Catégorie :</label>
+  <label>
+    <input type="radio" name="categorie" value="etudiant">Etudiant
+  </label>
+  <label>
+    <input type="radio" name="categorie" value="personnel">Personnel
+  </label>
+  <br>
+  <input type="submit" value="Valider">

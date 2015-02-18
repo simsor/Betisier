@@ -65,3 +65,18 @@ module.exports.getDetailPersonne = function(num, callback) {
 		}
 	});
 }
+
+module.exports.addPersonne = function(data, callback) {
+	// connexion a la base de donnée
+	db.getConnection(function(err, connexion) {
+		if (! err) {
+			var requete = 'INSERT INTO personne (per_nom, per_prenom, per_tel, per_mail, per_login, per_pwd) VALUES (' + connexion.escape(data.per_nom) +', '+ connexion.escape(data.per_prenom) +', ' + connexion.escape(data.per_tel) +', ' + connexion.escape(data.per_mail) +', ' + connexion.escape(data.per_login) +', '+ connexion.escape(data.per_pwd)+')';
+
+			// envoi de la requete à la BD
+			connexion.query(requete, callback);
+
+			// retour de la connexion dans le pool
+			connexion.release();
+		}
+	});
+}
