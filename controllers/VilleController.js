@@ -25,7 +25,7 @@ module.exports.ListerVille = function(request, response){
             console.log(err);
             return;
         }
-   response.listeVille = result; 
+   response.listeVille = result;
    response.nbVille = result.length;
    response.render('listerVille', response);
         });
@@ -33,12 +33,33 @@ module.exports.ListerVille = function(request, response){
 
    // ////////////////////////////////////////////// A J O U T E R     V I L L E
 
+module.exports.AjouterVilleOk = function(request, response){
+
+   response.title = 'Ajouter une ville';
+
+   model.addVille(request.body.vil_nom, function (err, result) {
+        if (err) {
+            // gestion de l'erreur
+            console.log(err);
+            response.villeOk = false;
+        }
+        else {
+          response.villeOk = true;
+          response.vil_nom = request.body.vil_nom;
+          response.render('ajoutVilleOk', response);
+        }
+    });
+};
+
+// ////////////////////////////////////////////// A J O U T E R     V I L L E    F O R M U L A I R E
+
 module.exports.AjouterVille = function(request, response){
 
-   response.title = 'Ajouter des villes';
+response.title = 'Ajouter une ville';
+response.render('ajoutVille', response);
 
-   response.render('ajoutVille', response);
 };
+
 
    // ////////////////////////////////////////////// I N S E R E R     V I L L E
 
