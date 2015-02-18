@@ -2,7 +2,7 @@
 {{> menu}}
 {{#if captchaOk}}
   {{#if connexionOk}}
-  <p><img src="/image/valid.png" alt="Valide!" >   Merci, vous êtes connecté {{login}}</p>
+<p><img src="/image/valid.png" alt="Valide!" >   Merci, vous êtes connecté <strong>{{login}}</strong></p>
   {{else}}
     <p><img src="/image/erreur.png" alt="invalide!" >   Erreur login / mot de passe</p>
   {{/if}}

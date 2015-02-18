@@ -3,3 +3,7 @@
 *.*~
 # Ignorer tous le repertoire node_modules
 node_modules/*
+
+# Ignorer les merdes d'Emacs
+\#*\#
+*~

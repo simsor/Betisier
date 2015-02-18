@@ -1,6 +1,6 @@
 <div id="header">
     <div id="connect">
-	{{#if session.login}}
+	{{#if session.connected}}
 	Utilisateur : <strong>{{session.login}}</strong><br/><a href="/deconnect">Déconnexion</a>
 	{{else}}
 	Non connecté<br /><a href="/connect">Connexion</a>
