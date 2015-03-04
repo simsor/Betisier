@@ -78,5 +78,7 @@ module.exports.addPersonne = function(data, callback) {
 			// retour de la connexion dans le pool
 			connexion.release();
 		}
+		else
+			console.log("Impossible de se connecter");
 	});
 }

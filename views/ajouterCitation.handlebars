@@ -1,3 +1,31 @@
 {{> enTete}}
-{{> menu}}		
+{{> menu}}
 <h1> Ajouter une citation</h1>
+<form method="POST">
+  <label>
+    Enseignant :
+    <select name="per_num">
+      {{#each liste_salaries}}
+      <option value="{{this.per_num}}">{{this.per_nom}}</option>
+      {{/each}}
+    </select>
+  </label>
+  <br />
+  <label>
+    Date Citation :
+    <input type="date" name="cit_date" />
+  </label>
+  <br />
+  <label>
+    Citation :
+    <textarea name="cit_libelle">{{cit_libelle}}</textarea>
+  </label>
+  <br />
+  <input type="submit" value="Valider" />
+
+  {{#if interdit}}
+  {{#each mots_interdits}}
+  <p><img src="image/erreur.png" /> le mot : <strong>{{this.mot_interdit}}</strong> n'est pas autorisé</p>
+  {{/each}}
+  {{/if}}
+</form>
