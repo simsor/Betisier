@@ -5,8 +5,8 @@ module.exports.addEtudiant = function(data, callback) {
     module_personne.addPersonne(data, function(err, result) {
 
     var per_num = result.insertId;
-    db.getConnection(function(err, connexion) {}
-      var req = "INSERT INTO etudiant (per_num, dep_num, div_num) VALUES(" + per_num + ", " +connexion.escape(data.dep_num) + ", "+ connexion.escape(data.div_num) + ")"
+    db.getConnection(function(err, connexion) {
+	var req = "INSERT INTO etudiant (per_num, dep_num, div_num) VALUES(" + per_num + ", " +connexion.escape(data.dep_num) + ", "+ connexion.escape(data.div_num) + ")";
     });
   });
 };
