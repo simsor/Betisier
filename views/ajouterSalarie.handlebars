@@ -1,0 +1,17 @@
+{{> enTete}}
+{{> menu}}
+<h1>Ajouter un salarié</h1>
+<form method="post">
+  <label>Téléphone professionnel :
+    <input type="text" name="sal_telprof">
+  </label>
+  <br>
+  <label>Fonction :
+    <select name="fon_num">
+      {{#each liste_fonctions}}
+        <option value="{{this.fon_num}}">{{this.fon_libelle}}</option>
+      {{/each}}
+    </select>
+  </label>
+  <br>
+  <input type="submit" value="Valider">
