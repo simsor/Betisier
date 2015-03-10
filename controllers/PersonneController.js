@@ -5,6 +5,7 @@ var model_departement = require('../models/departement');
 var model_fonction = require('../models/fonction');
 var model_etudiant = require('../models/etudiant');
 var model_salarie = require('../models/salarie');
+var async = require("async");
 
 // Fonction permettant de réunir les propriétés de différents objets
 function collect() {
@@ -71,23 +72,30 @@ module.exports.AjouterPersonneOk = function(request, response){
     if (request.body.per_nom != undefined) {
       session.personne_contenu = request.body;
 
-      if (request.body.categorie == "etudiant") {
-        model_division.getAllDivision(function(err, result) {
-          if (err) {
-            console.log(err);
-            return;
-          }
-          var toutes_divisions = result;
-          model_departement.getAllDepartement(function(err, result) {
-            if (err) {
-              console.log(err);
-              return;
-            }
-            response.liste_divisions = toutes_divisions;
-            response.liste_departements = result;
-            response.render('ajouterEtudiant', response);
-          });
-        });
+	if (request.body.categorie == "etudiant") {
+	    async.parallel([
+		function(callback) {
+		    model_division.getAllDivision(function(err, result) {
+			if (err) {
+			    console.log(err);
+			    return;
+			}
+			callback(null, result);
+		    });
+		},
+		function(callback) {
+		    model_departement.getAllDepartement(function(err, result) {
+			if (err) {
+			    console.log(err);
+			    return;
+			}
+			callback(null, result);
+		    });
+		}], function(err, result) {
+		    response.liste_divisions = result[0];
+		    response.liste_departements = result[1];
+		    response.render('ajouterEtudiant', response);
+		});
       }
       else {
         model_fonction.getAllFonction(function(err, result) {
