@@ -9,7 +9,7 @@ module.exports.getAllSalarie = function(callback) {
       connexion.release();
     }
     else {
-      callback("Impossible de récupérer la connexion")
+	callback("Impossible de récupérer la connexion");
     }
   });
 };
@@ -21,7 +21,7 @@ module.exports.addSalarie = function(data, callback) {
         var per_num = result.insertId;
         db.getConnection(function(err, connexion) {
           if (!err) {
-            var req = "INSERT INTO salarie (per_num, sal_telprof, fon_num) VALUES(" + per_num + ", " +connexion.escape(data.sal_telprof) + ", "+ connexion.escape(data.fon_num) + ")"
+              var req = "INSERT INTO salarie (per_num, sal_telprof, fon_num) VALUES(" + per_num + ", " +connexion.escape(data.sal_telprof) + ", "+ connexion.escape(data.fon_num) + ")";
             connexion.query(req, callback);
             connexion.release();
           }
@@ -34,4 +34,14 @@ module.exports.addSalarie = function(data, callback) {
         callback("Impossible d'ajouter la personne.", undefined);
       }
   });
+};
+
+module.exports.getSalarieByPerNum = function(per_num, callback) {
+    db.getConnection(function(err, connexion) {
+	if (!err) {
+	    var req = "SELECT * FROM salarie WHERE per_num = " + connexion.escape(per_num);
+	    connexion.query(req, callback);
+	    connexion.release();
+	}
+    });
 };

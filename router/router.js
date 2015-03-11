@@ -4,6 +4,36 @@ var PersonneController = require('./../controllers/PersonneController');
 var CitationController = require('./../controllers/CitationController');
 var VilleController = require('./../controllers/VilleController');
 
+// Fonctions pour checker le niveau des visiteurs
+
+function checkConnecte(req, res, next) {
+    if (req.session.connected)
+	return next();
+    else
+	return res.redirect("/");
+}
+
+function checkEtudiant(req, res, next) {
+    if (req.session.etudiant)
+	return next();
+    else
+	return res.redirect("/");
+}
+
+function checkSalarie(req, res, next) {
+    if (req.session.salarie)
+	return next();
+    else
+	return res.redirect("/");
+}
+
+function checkEtudiantOuSalarie(req, res, next) {
+    if (req.session.etudiant || req.session.salarie)
+	return next();
+    else
+	return res.redirect("/");
+}
+
 // Routes
 module.exports = function(app){
 
@@ -12,8 +42,9 @@ module.exports = function(app){
 
 // citations
     app.get('/listerCitation', CitationController.ListerCitation);
-    app.get('/ajouterCitation', CitationController.AjouterCitation);
-    app.post('/ajouterCitation', CitationController.VerifierCitation);
+
+    app.get('/ajouterCitation', checkEtudiant, CitationController.AjouterCitation);
+    app.post('/ajouterCitation', checkEtudiant, CitationController.VerifierCitation);
     app.get('/rechercherCitation', CitationController.RechercherCitation);
 
  // villes
@@ -25,13 +56,13 @@ module.exports = function(app){
 // connection
    app.get('/connect', ConnectController.Connect);
    app.post('/connect', ConnectController.ConnectOk);
-   app.get('/deconnect', ConnectController.Deconnect);
+    app.get('/deconnect', checkConnecte, ConnectController.Deconnect);
 
 
  //personne
    app.get('/listerPersonne', PersonneController.ListerPersonne);
-   app.get('/ajouterPersonne', PersonneController.AjouterPersonne);
-   app.post('/ajouterPersonne', PersonneController.AjouterPersonneOk);
+    app.get('/ajouterPersonne', checkSalarie, PersonneController.AjouterPersonne);
+    app.post('/ajouterPersonne', checkSalarie, PersonneController.AjouterPersonneOk);
    app.get('/detailPersonne/:num', PersonneController.DetailPersonne);
 
 // tout le reste
