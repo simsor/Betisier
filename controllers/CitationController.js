@@ -2,6 +2,7 @@ var model = require('../models/citation.js');
 var model_salarie = require('../models/salarie');
 var model_mot = require("../models/mot");
 var async = require("async");
+var fonctions = require("../fonctions");
 
 // ////////////////////////////////////////////// L I S T E R     C I T A T I O N
 
@@ -85,11 +86,21 @@ module.exports.AjouterCitation = 	function(request, response){
 			      if (!result[0].interdit) {
 				  // Si il n'y a pas de mots interdits
 				  // On ajoute la citation
+				  var nouvDate = fonctions.getIsoDate(request.body.cit_date);
+				  if (!nouvDate) {
+				      var date = new Date();
+				      nouvDate = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
+				  }
+
+				  console.log(nouvDate);
+				  
 				  model.addCitation({
 				      per_num: request.body.per_num,
-				      cit_libelle: request.body.cit_libelle 
+				      per_num_etu: request.session.per_num,
+				      cit_libelle: request.body.cit_libelle,
+				      cit_date: nouvDate
 				  }, function(err, result) {
-				      console.log("Erreur : " + err);
+				      console.log("Citation ajoutée");
 				  });
 			      }
 			      response.interdit = result[0].interdit;
