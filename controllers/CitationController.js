@@ -7,7 +7,7 @@ var async = require("async");
 
 module.exports.ListerCitation = 	function(request, response){
    response.title = 'Liste des citations';
-   model.getListeCitations(function(err, result){
+   model.getListeCitationsValidees(function(err, result){
      if (err) {
        console.log(err);
        return;
