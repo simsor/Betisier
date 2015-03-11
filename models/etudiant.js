@@ -22,3 +22,13 @@ module.exports.addEtudiant = function(data, callback) {
       }
   });
 };
+
+module.exports.getEtudiantByPerNum = function(per_num, callback) {
+    db.getConnection(function(err, connexion) {
+	if (!err) {
+	    var req = "SELECT * FROM etudiant WHERE per_num = " + connexion.escape(per_num);
+	    connexion.query(req, callback);
+	    connexion.release();
+	}
+    });
+};

@@ -81,6 +81,17 @@ module.exports.AjouterCitation = 	function(request, response){
 				  console.log(err);
 				  return;
 			      }
+
+			      if (!result[0].interdit) {
+				  // Si il n'y a pas de mots interdits
+				  // On ajoute la citation
+				  model.addCitation({
+				      per_num: request.body.per_num,
+				      cit_libelle: request.body.cit_libelle 
+				  }, function(err, result) {
+				      console.log("Erreur : " + err);
+				  });
+			      }
 			      response.interdit = result[0].interdit;
 			      response.mots_interdits = result[0].mots_interdits;
 			      response.cit_libelle = result[0].cit_libelle;

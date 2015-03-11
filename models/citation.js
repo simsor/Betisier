@@ -28,3 +28,12 @@ module.exports.getListeCitationsValidees = function(callback) {
 	}
     });
 };
+
+module.exports.addCitation = function(data, callback) {
+    db.getConnection(function(err, connexion) {
+	if (!err) {
+	    connexion.query("INSERT INTO citation SET ?", data, callback);
+	    connexion.release();
+	}
+    });
+};
