@@ -3,6 +3,7 @@ var model_salarie = require('../models/salarie');
 var model_mot = require("../models/mot");
 var async = require("async");
 var fonctions = require("../fonctions");
+var model_vote = require('../models/vote.js')
 
 // ////////////////////////////////////////////// L I S T E R     C I T A T I O N
 
@@ -13,6 +14,22 @@ module.exports.ListerCitation = 	function(request, response){
        console.log(err);
        return;
      }
+     var listeCitations = result;
+     model_vote.getListeVoteByPerNum(3, function(err, result){
+       if (err){
+          console.log(err);
+       }
+       else {
+          var listeVotes = result;
+          for (var i = 0; listeCitations.length; i++) {
+            for (var j = 0; j<listeVotes.length; j++) {
+                if (listeCitations[i].cit_num == listeVotes[j].cit_num) {
+                  listeCitations[i].dejaVote = true;
+                }
+          }
+        }
+      }
+     });
      response.listeCitation = result;
      response.nbCitations = result.length;
      response.render('listerCitation', response);
@@ -27,7 +44,6 @@ module.exports.AjouterCitation = 	function(request, response){
      model_salarie.getAllSalarie(function(err, result) {
        if (!err) {
          response.liste_salaries = result;
-
          response.render('ajouterCitation', response);
       }
       else
