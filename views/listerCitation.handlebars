@@ -9,6 +9,7 @@
     <th>Libellé</th>
     <th>Date</th>
     <th>Moyenne des notes</th>
+    <th>Noter</th>
   </tr>
 
   {{#each listeCitation}}
@@ -17,6 +18,11 @@
     <td>{{this.cit_libelle}}</td>
     <td>{{this.cit_date}}</td>
     <td>{{this.moyenne}}</td>
+      {{#if this.dejaVote}}
+        <td><img src="/image/erreur.png" alt="invalide!" ></td>
+      {{else}}
+        <td><img src="/image/modifier.png" alt="modifier!" ></td>
+      {{/if}}
   </tr>
   {{/each}}
 </table>
