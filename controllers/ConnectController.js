@@ -87,9 +87,6 @@ module.exports.ConnectOk = function(request, response){
 
  // ////////////////////////////////////////////// D E C O N N E C T   U T I L I S A T E U R
 module.exports.Deconnect = function(request, response){
-    var session = request.session;
-
-    session.connected = false;
-    
+    request.session.destroy();
     response.render('disconnect');
 };
