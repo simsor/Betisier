@@ -45,7 +45,8 @@ module.exports = function(app){
     app.get('/ajouterCitation', checkEtudiant, CitationController.AjouterCitation);
     app.post('/ajouterCitation', checkEtudiant, CitationController.VerifierCitation);
     app.get('/rechercherCitation', CitationController.RechercherCitation);
-    //app.get('/noterCitation/:cit_num', CitationController.ModifierNote);
+    app.get('/noterCitation/:cit_num', CitationController.ModifierNote);
+    app.post('/noterCitation/:cit_num', CitationController.NoteOK);
     app.get('/supprimerNoteCitation/:cit_num', CitationController.SupprimerNote);
 
  // villes

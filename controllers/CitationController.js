@@ -131,16 +131,38 @@ module.exports.AjouterCitation = 	function(request, response){
   // ////////////////////////////////////////////// S U P P R I M E R   U N E   N O T E
 
   module.exports.SupprimerNote = 	function(request, response){
-       response.title = 'Ajouter des citations';
        model_vote.deleteVote(request.params.cit_num, request.session.per_num, function(err, result) {
          if (!err) {
            response.redirect('/listerCitation');
         }
-        else
+        else {
           console.log(err);
-       });
+        }
+        });
+      };
 
-    } ;
+// ////////////////////////////////////////////// F O R M U L A I R E   N O U V E L L E   N O T E
+
+module.exports.ModifierNote = 	function(request, response){
+         response.title = 'Modifiez votre note';
+         response.render('modifierVote', response);
+};
+
+
+// ////////////////////////////////////////////// U P D A T E   U N E   N O T E
+
+module.exports.NoteOK = 	function(request, response){
+  model_vote.addVote(request.params.cit_num, request.session.per_num, request.body.vot_valeur, function(err, result) {
+    if (!err) {
+      response.voteModifie = true;
+   }
+   else{
+     response.voteModifie = false;
+     console.log(err);
+   }
+   response.render('modifierNoteOK', response);
+  });
+}
 
 
 // ////////////////////////////////////////////// R E C H E R C H E R     C I T A T I O N
@@ -148,6 +170,4 @@ module.exports.AjouterCitation = 	function(request, response){
 module.exports.RechercherCitation = function(request, response){
    response.title = 'Rechercher des citations';
    response.render('rechercherCitation', response);
-
-
-  } ;
+};
