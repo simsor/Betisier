@@ -207,6 +207,7 @@ module.exports.ValiderCitationOK = function(request, response) {
 
 module.exports.SupprimerCitation = function(request, response) {
     var cit_num = request.params.cit_num || -1;
+    var page = request.params.page || "listerCitation";
     if (cit_num == -1)
 	return response.redirect("/");
 
@@ -216,6 +217,6 @@ module.exports.SupprimerCitation = function(request, response) {
 	    return;
 	}
 
-	response.redirect("/validerCitation");
+	response.redirect("/" + page);
     });
 };
