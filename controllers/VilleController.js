@@ -66,3 +66,16 @@ module.exports.ModifierVille = function(request, response){
    response.title = 'Modifier une ville';
    response.render('modifierVille', response);
 };
+
+// ////////////////////////////////////////////// S U P P R I M E R   U N E   V I L L E
+
+module.exports.SupprimerVille = 	function(request, response){
+     model.deleteVille(request.params.vil_num, function(err, result) {
+       if (!err) {
+         response.redirect('/listerVille');
+      }
+      else {
+        console.log(err);
+      }
+      });
+    };

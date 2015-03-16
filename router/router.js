@@ -65,6 +65,7 @@ module.exports = function(app){
     app.get('/ajouterVille', checkConnecte, VilleController.AjouterVille);
     app.post('/ajouterVille', checkConnecte, VilleController.AjouterVilleOk);
     app.get('/modifierVille', checkConnecte, VilleController.ModifierVille);
+    app.get('/supprimerVille/:vil_num', checkAdmin, VilleController.SupprimerVille);
 
 // connection
    app.get('/connect', ConnectController.Connect);
