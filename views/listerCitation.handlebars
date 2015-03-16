@@ -19,9 +19,9 @@
     <td>{{this.cit_date}}</td>
     <td>{{this.moyenne}}</td>
       {{#if this.dejaVote}}
-        <td><img src="/image/erreur.png" alt="invalide!" ></td>
+        <td><a href="supprimerNoteCitation/{{this.cit_num}}"><img src="/image/erreur.png" alt="invalide!" ></a></td>
       {{else}}
-        <td><img src="/image/modifier.png" alt="modifier!" ></td>
+        <td><a href="noterCitation"><img src="/image/modifier.png" alt="modifier!" ></a></td>
       {{/if}}
   </tr>
   {{/each}}

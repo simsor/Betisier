@@ -42,10 +42,11 @@ module.exports = function(app){
 
 // citations
     app.get('/listerCitation', CitationController.ListerCitation);
-
     app.get('/ajouterCitation', checkEtudiant, CitationController.AjouterCitation);
     app.post('/ajouterCitation', checkEtudiant, CitationController.VerifierCitation);
     app.get('/rechercherCitation', CitationController.RechercherCitation);
+    //app.get('/noterCitation/:cit_num', CitationController.ModifierNote);
+    app.get('/supprimerNoteCitation/:cit_num', CitationController.SupprimerNote);
 
  // villes
    app.get('/listerVille', VilleController.ListerVille);

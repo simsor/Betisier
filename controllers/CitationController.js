@@ -14,7 +14,7 @@ module.exports.ListerCitation = 	function(request, response){
        return;
      }
      var listeCitations = result;
-     model_vote.getListeVoteByPerNum(3, function(err, result){
+     model_vote.getListeVoteByPerNum(request.session.per_num, function(err, result){
        if (err){
           console.log(err);
        }
@@ -103,7 +103,7 @@ module.exports.AjouterCitation = 	function(request, response){
 				  // On ajoute la citation
 				  model.addCitation({
 				      per_num: request.body.per_num,
-				      cit_libelle: request.body.cit_libelle 
+				      cit_libelle: request.body.cit_libelle
 				  }, function(err, result) {
 				      console.log("Erreur : " + err);
 				  });
@@ -115,6 +115,22 @@ module.exports.AjouterCitation = 	function(request, response){
 			      response.render("ajouterCitation", response);
 			  });
   };
+
+
+  // ////////////////////////////////////////////// S U P P R I M E R   U N E   N O T E
+
+  module.exports.SupprimerNote = 	function(request, response){
+       response.title = 'Ajouter des citations';
+       model_vote.deleteVote(request.params.cit_num, request.session.per_num, function(err, result) {
+         if (!err) {
+           response.redirect('/listerCitation');
+        }
+        else
+          console.log(err);
+       });
+
+    } ;
+
 
 // ////////////////////////////////////////////// R E C H E R C H E R     C I T A T I O N
 
