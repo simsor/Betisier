@@ -1,0 +1,9 @@
+{{> enTete}}
+{{> menu}}
+<h1>Modifiez votre note</h1>
+
+{{#if voteModifie}}
+<p><img src="/image/valid.png" alt="Valide!" >   Le vote a vien été modifié</p>
+{{else}}
+  <p><img src="/image/erreur.png" alt="invalide!" >   Erreur, le vote n'a pas pu être modifié</p>
+{{/if}}

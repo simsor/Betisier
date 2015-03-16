@@ -21,7 +21,7 @@
       {{#if this.dejaVote}}
         <td><a href="supprimerNoteCitation/{{this.cit_num}}"><img src="/image/erreur.png" alt="invalide!" ></a></td>
       {{else}}
-        <td><a href="noterCitation"><img src="/image/modifier.png" alt="modifier!" ></a></td>
+        <td><a href="noterCitation/{{this.cit_num}}"><img src="/image/modifier.png" alt="modifier!" ></a></td>
       {{/if}}
   </tr>
   {{/each}}
