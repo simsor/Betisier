@@ -151,3 +151,50 @@ module.exports.RechercherCitation = function(request, response){
 
 
   } ;
+
+// ////////////////////////////////////////////// V A L I D E R    C I T A T I O N
+module.exports.ValiderCitation = function(request, response) {
+    response.title = "Valider une citation";
+
+    model.getListeCitationsNonValidees(function(err, result) {
+	if (err) {
+	    console.log(err);
+	    return;
+	}
+
+	response.citations = result;
+	response.render('validerCitation', response);
+    });
+};
+
+module.exports.ValiderCitationOK = function(request, response) {
+    var cit_num = request.params.cit_num || -1;
+    if (cit_num == -1)
+	return response.redirect("/");
+
+    var per_num = request.session.per_num;
+
+    model.validerCitation(cit_num, per_num, function(err, result) {
+	if (err) {
+	    console.log(err);
+	    return; 
+	}
+
+	response.redirect("/validerCitation");
+    });
+};
+
+module.exports.SupprimerCitation = function(request, response) {
+    var cit_num = request.params.cit_num || -1;
+    if (cit_num == -1)
+	return response.redirect("/");
+
+    model.supprimerCitation(cit_num, function(err, result) {
+	if (err) {
+	    console.log(err);
+	    return;
+	}
+
+	response.redirect("/validerCitation");
+    });
+};

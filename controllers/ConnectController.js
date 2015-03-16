@@ -42,6 +42,8 @@ module.exports.ConnectOk = function(request, response){
 			}
 		    else {
 			var per_num = result[0].per_num;
+			session.admin = (result[0].per_admin == 1);
+			console.log(session.admin);
 			async.parallel([
 			    function(callback) {
 				model_etudiant.getEtudiantByPerNum(per_num, function(err, result) {

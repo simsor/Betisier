@@ -34,6 +34,13 @@ function checkEtudiantOuSalarie(req, res, next) {
 	return res.redirect("/");
 }
 
+function checkAdmin(req, res, next) {
+    if (req.session.admin)
+	return next();
+    else
+	return res.redirect("/");
+}
+
 // Routes
 module.exports = function(app){
 
@@ -44,15 +51,18 @@ module.exports = function(app){
     app.get('/listerCitation', CitationController.ListerCitation);
     app.get('/ajouterCitation', checkEtudiant, CitationController.AjouterCitation);
     app.post('/ajouterCitation', checkEtudiant, CitationController.VerifierCitation);
-    app.get('/rechercherCitation', CitationController.RechercherCitation);
+    app.get('/rechercherCitation', checkConnecte, CitationController.RechercherCitation);
+    app.get('/validerCitation', checkAdmin, CitationController.ValiderCitation);
+    app.get('/validerCitationOK/:cit_num', checkAdmin, CitationController.ValiderCitationOK);
+    app.get('/supprimerCitation/:cit_num', checkAdmin, CitationController.SupprimerCitation);
     //app.get('/noterCitation/:cit_num', CitationController.ModifierNote);
-    app.get('/supprimerNoteCitation/:cit_num', CitationController.SupprimerNote);
+    app.get('/supprimerNoteCitation/:cit_num', checkEtudiant, CitationController.SupprimerNote);
 
  // villes
    app.get('/listerVille', VilleController.ListerVille);
-   app.get('/ajouterVille', VilleController.AjouterVille);
-   app.post('/ajouterVille', VilleController.AjouterVilleOk);
-   app.get('/modifierVille', VilleController.ModifierVille);
+    app.get('/ajouterVille', checkConnecte, VilleController.AjouterVille);
+    app.post('/ajouterVille', checkConnecte, VilleController.AjouterVilleOk);
+    app.get('/modifierVille', checkConnecte, VilleController.ModifierVille);
 
 // connection
    app.get('/connect', ConnectController.Connect);
@@ -62,8 +72,8 @@ module.exports = function(app){
 
  //personne
    app.get('/listerPersonne', PersonneController.ListerPersonne);
-    app.get('/ajouterPersonne', checkSalarie, PersonneController.AjouterPersonne);
-    app.post('/ajouterPersonne', checkSalarie, PersonneController.AjouterPersonneOk);
+    app.get('/ajouterPersonne', checkConnecte, PersonneController.AjouterPersonne);
+    app.post('/ajouterPersonne', checkConnecte, PersonneController.AjouterPersonneOk);
    app.get('/detailPersonne/:num', PersonneController.DetailPersonne);
 
 // tout le reste

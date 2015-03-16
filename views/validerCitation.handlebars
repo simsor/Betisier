@@ -1,0 +1,28 @@
+{{> enTete}}
+{{> menu}}
+
+<h1>Valider une citation</h1>
+
+<table>
+  <tr>
+    <th>Proposée par</th>
+    <th>Enseignant</th>
+    <th>Date</th>
+    <th>Citation</th>
+    <th>Action</th>
+  </tr>
+
+  {{#each citations}}
+
+    <tr>
+      <td>{{this.etu_prenom}} {{this.etu_nom}}</td>
+      <td>{{this.ens_prenom}} {{this.ens_nom}}</td>
+      <td>{{this.cit_date}}</td>
+      <td>{{this.cit_libelle}}</td>
+      <td><a href="/validerCitationOK/{{this.cit_num}}"><img src="/image/valid.png" alt="Valider" title="Valider"/></a>
+      <a href="/supprimerCitation/{{this.cit_num}}"><img src="/image/erreur.png" alt="Supprimer" title="Supprimer" /></a></td>
+    </tr>
+    
+  {{/each}}
+  
+</table>
