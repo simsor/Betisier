@@ -56,9 +56,9 @@ module.exports = function(app){
     app.get('/validerCitationOK/:cit_num', checkAdmin, CitationController.ValiderCitationOK);
     app.get('/supprimerCitation/:cit_num/:page', checkAdmin, CitationController.SupprimerCitation);
     app.get('/rechercherCitation', CitationController.RechercherCitation);
-    app.get('/noterCitation/:cit_num', CitationController.ModifierNote);
-    app.post('/noterCitation/:cit_num', CitationController.NoteOK);
-    app.get('/supprimerNoteCitation/:cit_num', CitationController.SupprimerNote);
+    app.get('/noterCitation/:cit_num', checkEtudiant, CitationController.ModifierNote);
+    app.post('/noterCitation/:cit_num', checkEtudiant, CitationController.NoteOK);
+    app.get('/supprimerNoteCitation/:cit_num', checkEtudiant, CitationController.SupprimerNote);
 
  // villes
    app.get('/listerVille', VilleController.ListerVille);

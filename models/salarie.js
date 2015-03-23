@@ -45,3 +45,14 @@ module.exports.getSalarieByPerNum = function(per_num, callback) {
 	}
     });
 };
+
+module.exports.getSalariesAvecCitationValidee = function(callback) {
+    db.getConnection(function(err, connexion) {
+	if (!err) {
+	    var req = "SELECT * FROM salarie s JOIN citation c ON c.per_num = s.per_num JOIN personne p on p.per_num = s.per_num WHERE c.cit_valide = 1";
+	    
+	    connexion.query(req, callback);
+	    connexion.release();
+	}
+    });
+};

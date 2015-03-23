@@ -2,4 +2,28 @@
 {{> menu}}		
 <h1> Rechercher une citation</h1>
 		
-	
+<form action="#" method="POST">
+
+  <label>
+    Enseignant :
+    <select name="per_num">
+      <option value="-1">Tous</option>
+      {{#each salaries}}
+        <option value="{{this.per_num}}">{{this.per_prenom}} {{this.per_nom}}</option>
+      {{/each}}
+    </select>
+  </label>
+
+  <br />
+
+  <label>
+    Date :
+    <select name="cit_date">
+      <option value="-1">Toutes</option>
+      {{#each citations}}
+        <option value="{{this.cit_date}}">{{this.cit_date}}</option>
+      {{/each}}
+    </select>
+  </label>
+  
+</form>

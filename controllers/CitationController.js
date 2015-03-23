@@ -152,26 +152,70 @@ module.exports.ModifierNote = 	function(request, response){
 // ////////////////////////////////////////////// U P D A T E   U N E   N O T E
 
 module.exports.NoteOK = 	function(request, response){
-  model_vote.addVote(request.params.cit_num, request.session.per_num, request.body.vot_valeur, function(err, result) {
-    if (!err) {
-      response.voteModifie = true;
-   }
-   else{
-     response.voteModifie = false;
-     console.log(err);
-   }
-   response.render('modifierNoteOK', response);
-  });
-}
+    var note = request.body.vot_valeur;
+
+    if (note <= 20 && note >= 0) {
+	model_vote.addVote(request.params.cit_num, request.session.per_num, request.body.vot_valeur, function(err, result) {
+	    if (!err) {
+		response.voteModifie = true;
+	    }
+	    else{
+		response.voteModifie = false;
+		console.log(err);
+	    }
+	    response.render('modifierNoteOK', response);
+	});
+    }
+    else {
+	response.voteModifie = false;
+	response.render("modifierNoteOK", response);
+    }
+};
 
 
 // ////////////////////////////////////////////// R E C H E R C H E R     C I T A T I O N
 
 module.exports.RechercherCitation = function(request, response){
-   response.title = 'Rechercher des citations';
-   response.render('rechercherCitation', response);
+    response.title = 'Rechercher des citations';
+    async.parallel([
 
-} ;
+	function(callback) {
+	    // Liste des enseignants ayant des citations validées
+	    model_salarie.getSalariesAvecCitationValidee(function(err, result) {
+		if (err) {
+		    callback(err);
+		    return;
+		}
+
+		callback(null, result);
+	    });
+	},
+
+	function(callback) {
+	    // Liste des dates des citations validées
+	    model.getListeCitationsValidees(function(err, result) {
+		if (err) {
+		    callback(err);
+		    return;
+		}
+
+		callback(null, result);
+	    });
+	}
+	
+    ], function(err, result) {
+	if (!err) {
+	    response.salaries = result[0];
+	    response.citations = result[1];
+	}
+	else {
+	    console.log(err);
+	    return;
+	}
+
+	response.render("rechercherCitation", response);
+    }); 
+};
 
 // ////////////////////////////////////////////// V A L I D E R    C I T A T I O N
 module.exports.ValiderCitation = function(request, response) {
