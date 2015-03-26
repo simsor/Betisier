@@ -28,6 +28,7 @@
        <th>Numéro</th>
        <th>Nom</th>
         {{#if session.admin}}
+          <th>Modifier</th>
           <th>Supprimer</th>
         {{/if}}
      </tr>
@@ -35,8 +36,9 @@
     <tr>
       <td>{{this.vil_num}}</td>
       <td>{{this.vil_nom}}</td>
-      {{#if ../session.admin}}<td>
-        <a href="supprimerVille/{{this.vil_num}}"><img src="/image/erreur.png" alt="invalide!" ></a></td>
+      {{#if ../session.admin}}
+        <td><a href="modifierVille/{{this.vil_num}}"><img src="/image/modifier.png" alt="modifier" ></a></td>
+        <td><a href="supprimerVille/{{this.vil_num}}"><img src="/image/erreur.png" alt="invalide!" ></a></td>
       {{/if}}
     </tr>
  {{/each}}

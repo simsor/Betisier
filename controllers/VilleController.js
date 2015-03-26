@@ -60,12 +60,34 @@ response.render('ajoutVille', response);
 
 };
 
-   // ////////////////////////////////////////////// M O D I F I E R     V I L L E
+   // ////////////////////////////////////////////// M O D I F I E R     V I L L E   F O R M U L A I R E
 
 module.exports.ModifierVille = function(request, response){
    response.title = 'Modifier une ville';
    response.render('modifierVille', response);
 };
+
+// ////////////////////////////////////////////// M O D I F I E R   U N E   V I L L E
+
+module.exports.ModifierVilleOk = function(request, response){
+
+response.title = 'Modifier une ville';
+
+model.updateVille(request.params.vil_num, request.body.vil_nom, function (err, result) {
+     if (err) {
+         // gestion de l'erreur
+         console.log(err);
+         response.villeOk = false;
+         response.vil_nom = request.body.vil_nom;
+     }
+     else {
+       response.villeOk = true;
+       response.vil_nom = request.body.vil_nom;
+     }
+     response.render('modifierVilleOk', response);
+ });
+};
+
 
 // ////////////////////////////////////////////// S U P P R I M E R   U N E   V I L L E
 
