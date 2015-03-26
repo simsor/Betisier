@@ -1,0 +1,22 @@
+{{> enTete}}
+{{> menu}}
+
+<h1>Rechercher une citation</h1>
+
+<table>
+  <tr>
+    <th>Enseignant</th>
+    <th>Citation</th>
+    <th>Date</th>
+    <th>Note</th> 
+  </tr>
+
+  {{#each citations}}
+    <tr>
+      <td>{{this.per_prenom}} {{this.per_nom}}</td>
+      <td>{{this.cit_libelle}}</td>
+      <td>{{this.cit_date}}</td>
+      <td>{{#if this.moyenne}}{{this.moyenne}}{{else}}N/A{{/if}}</td>
+    </tr>
+  {{/each}}
+</table>

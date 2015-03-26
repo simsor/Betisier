@@ -51,7 +51,8 @@ module.exports = function(app){
     app.get('/listerCitation', CitationController.ListerCitation);
     app.get('/ajouterCitation', checkEtudiant, CitationController.AjouterCitation);
     app.post('/ajouterCitation', checkEtudiant, CitationController.VerifierCitation);
-    app.get('/rechercherCitation', checkConnecte, CitationController.RechercherCitation);
+    app.get('/rechercherCitation', checkConnecte, CitationController.FormulaireRechercherCitation);
+    app.post('/rechercherCitation', checkConnecte, CitationController.RechercherCitation);
     app.get('/validerCitation', checkAdmin, CitationController.ValiderCitation);
     app.get('/validerCitationOK/:cit_num', checkAdmin, CitationController.ValiderCitationOK);
     app.get('/supprimerCitation/:cit_num/:page', checkAdmin, CitationController.SupprimerCitation);

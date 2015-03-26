@@ -20,10 +20,26 @@
     Date :
     <select name="cit_date">
       <option value="-1">Toutes</option>
-      {{#each citations}}
-        <option value="{{this.cit_date}}">{{this.cit_date}}</option>
+      {{#each dates}}
+        <option value="{{this}}">{{this}}</option>
       {{/each}}
     </select>
   </label>
+
+  <br />
+
+  <label>
+    Note :
+    <select name="moyenne">
+      <option value="-1">Toutes</option>
+      {{#each moyennes}}
+        <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+  </label>
+
+  <br />
+
+  <input type="submit" value="Rechercher" />
   
 </form>

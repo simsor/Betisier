@@ -175,7 +175,7 @@ module.exports.NoteOK = 	function(request, response){
 
 // ////////////////////////////////////////////// R E C H E R C H E R     C I T A T I O N
 
-module.exports.RechercherCitation = function(request, response){
+module.exports.FormulaireRechercherCitation = function(request, response){
     response.title = 'Rechercher des citations';
     async.parallel([
 
@@ -198,15 +198,28 @@ module.exports.RechercherCitation = function(request, response){
 		    callback(err);
 		    return;
 		}
+		var dates = [];
+		var votes = [];
+		for (var i=0; i < result.length; i++) {
+		    if (dates.indexOf(result[i].cit_date) == -1) {
+			// Si la date n'est pas déjà dans le tableau
+			dates.push(result[i].cit_date);
+		    }
 
-		callback(null, result);
+		    if(votes.indexOf(result[i].moyenne) == -1) {
+			// Si la note n'est pas déjà dans le tableau
+			votes.push(result[i].moyenne);
+		    }
+		}
+		callback(null, [dates, votes]);
 	    });
 	}
 	
     ], function(err, result) {
 	if (!err) {
 	    response.salaries = result[0];
-	    response.citations = result[1];
+	    response.dates = result[1][0];
+	    response.moyennes = result[1][1];
 	}
 	else {
 	    console.log(err);
@@ -215,6 +228,20 @@ module.exports.RechercherCitation = function(request, response){
 
 	response.render("rechercherCitation", response);
     }); 
+};
+
+
+module.exports.RechercherCitation = function(request, response) {
+    model.rechercherCitation(request.body.per_num, request.body.cit_date, request.body.moyenne, function(err, result) {
+	if (err) {
+	    console.log(err);
+	    return;
+	}
+
+	response.citations = result;
+
+	response.render("resultatRecherche", response);
+    });
 };
 
 // ////////////////////////////////////////////// V A L I D E R    C I T A T I O N
