@@ -10,35 +10,35 @@ function checkConnecte(req, res, next) {
     if (req.session.connected)
 	return next();
     else
-	return res.redirect("/");
+	return res.redirect("/403");
 }
 
 function checkEtudiant(req, res, next) {
     if (req.session.etudiant)
 	return next();
     else
-	return res.redirect("/");
+	return res.redirect("/403");
 }
 
 function checkSalarie(req, res, next) {
     if (req.session.salarie)
 	return next();
     else
-	return res.redirect("/");
+	return res.redirect("/403");
 }
 
 function checkEtudiantOuSalarie(req, res, next) {
     if (req.session.etudiant || req.session.salarie)
 	return next();
     else
-	return res.redirect("/");
+	return res.redirect("/403");
 }
 
 function checkAdmin(req, res, next) {
     if (req.session.admin)
 	return next();
     else
-	return res.redirect("/");
+	return res.redirect("/403");
 }
 
 // Routes
@@ -73,14 +73,16 @@ module.exports = function(app){
     app.get('/deconnect', checkConnecte, ConnectController.Deconnect);
 
 
- //personne
-   app.get('/listerPersonne', PersonneController.ListerPersonne);
+    //personne
+    app.get('/listerPersonne', PersonneController.ListerPersonne);
     app.get('/ajouterPersonne', checkConnecte, PersonneController.AjouterPersonne);
     app.post('/ajouterPersonne', checkConnecte, PersonneController.AjouterPersonneOk);
-   app.get('/detailPersonne/:num', PersonneController.DetailPersonne);
-
-// tout le reste
-  app.get('*', HomeController.Index);
-  app.post('*', HomeController.Index);
-
+    app.get('/detailPersonne/:num', PersonneController.DetailPersonne);
+    
+    // tout le reste
+    app.get("/403", HomeController.NotAllowed);
+    app.post("/403", HomeController.NotAllowed);
+    app.get('*', HomeController.NotFound);
+    app.post('*', HomeController.NotFound);
+    
 };
