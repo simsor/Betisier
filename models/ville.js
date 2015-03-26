@@ -37,3 +37,19 @@ module.exports.addVille = function (vil_nom, callback) {
 				}
 			});
 };
+
+module.exports.deleteVille = function (vil_num, callback) {
+	// connexion à la BD
+	db.getConnection (function(err, connexion) {
+		if (! err) {
+
+			// on récupère tous les votes par personne
+			var requete = "DELETE from ville WHERE vil_num="+connexion.escape(vil_num);
+			// envoi de la requete a la BD
+			connexion.query(requete, callback);
+
+			// la connexion est renvoyée dans le pool de connexions
+			connexion.release();
+		}
+	});
+};

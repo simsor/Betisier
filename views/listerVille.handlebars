@@ -1,9 +1,9 @@
-<!-- 
-* Celle vue permet d'afficher l'intégralité des Villes 
+<!--
+* Celle vue permet d'afficher l'intégralité des Villes
 * la méthode ListerVille du controleur : villeControleur.js
 * lui passe listeVille et nbVille .
 * listeVille contient par exemple :
-* [ 
+* [
 * { vil_num: 5, vil_nom: 'Tulle' },
 * { vil_num: 6, vil_nom: 'Brive' },
 * { vil_num: 17, vil_nom: 'Orléans' }
@@ -27,10 +27,17 @@
      <tr>
        <th>Numéro</th>
        <th>Nom</th>
-     </tr>                               
+        {{#if session.admin}}
+          <th>Supprimer</th>
+        {{/if}}
+     </tr>
  {{#each listeVille}} <!--  parcours de listeVille -->
-    <tr><td>{{this.vil_num}}</td><td>{{this.vil_nom}}</td></tr>
+    <tr>
+      <td>{{this.vil_num}}</td>
+      <td>{{this.vil_nom}}</td>
+      {{#if ../session.admin}}<td>
+        <a href="supprimerVille/{{this.vil_num}}"><img src="/image/erreur.png" alt="invalide!" ></a></td>
+      {{/if}}
+    </tr>
  {{/each}}
  </table>
-            
- 

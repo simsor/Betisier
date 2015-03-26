@@ -66,6 +66,7 @@ module.exports = function(app){
     app.get('/ajouterVille', checkConnecte, VilleController.AjouterVille);
     app.post('/ajouterVille', checkConnecte, VilleController.AjouterVilleOk);
     app.get('/modifierVille', checkConnecte, VilleController.ModifierVille);
+    app.get('/supprimerVille/:vil_num', checkAdmin, VilleController.SupprimerVille);
 
 // connection
    app.get('/connect', ConnectController.Connect);
@@ -77,12 +78,12 @@ module.exports = function(app){
     app.get('/listerPersonne', PersonneController.ListerPersonne);
     app.get('/ajouterPersonne', checkConnecte, PersonneController.AjouterPersonne);
     app.post('/ajouterPersonne', checkConnecte, PersonneController.AjouterPersonneOk);
-    app.get('/detailPersonne/:num', PersonneController.DetailPersonne);
-    
+   app.get('/detailPersonne/:num', PersonneController.DetailPersonne);
+   app.get('/supprimerPersonne/:per_num', checkAdmin, PersonneController.SupprimerPersonne);
+
     // tout le reste
     app.get("/403", HomeController.NotAllowed);
     app.post("/403", HomeController.NotAllowed);
     app.get('*', HomeController.NotFound);
     app.post('*', HomeController.NotFound);
-    
 };

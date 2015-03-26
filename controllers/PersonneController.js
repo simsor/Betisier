@@ -141,3 +141,16 @@ module.exports.AjouterPersonneOk = function(request, response){
     });
   }
 };
+
+// ////////////////////////////////////////////// S U P P R I M E R   U N E   P E R S O N N E
+
+module.exports.SupprimerPersonne = 	function(request, response){
+     model.deletePersonne(request.params.per_num, function(err, result) {
+       if (!err) {
+         response.redirect('/listerPersonne');
+      }
+      else {
+        console.log(err);
+      }
+      });
+    };

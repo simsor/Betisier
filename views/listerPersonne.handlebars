@@ -8,12 +8,18 @@
        <th>Numéro</th>
        <th>Nom</th>
        <th>Prénom</th>
+       {{#if session.admin}}
+          <th>Supprimer</th>
+       {{/if}}
      </tr>
      {{#each listePersonne}}
      <tr>
        <td><strong><a href="/detailPersonne/{{this.per_num}}">{{this.per_num}}</a></strong></td>
        <td>{{this.per_nom}}</td>
        <td>{{this.per_prenom}}</td>
+       {{#if ../session.admin}}<td>
+         <a href="supprimerPersonne/{{this.per_num}}"><img src="/image/erreur.png" alt="invalide!" ></a></td>
+       {{/if}}
      </tr>
      {{/each}}
    </table>
