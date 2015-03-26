@@ -1,4 +1,8 @@
 {{> enTete}}
 {{> menu}}
 
-<img class="centreImage" src="/image/logo.gif" alt="Covoiturage IUT" title="Covoiturage IUT Limousin" />
+{{#if session.connected}}
+    <img class="centreImage" src="/image/logo.gif" alt="Covoiturage IUT" title="Covoiturage IUT Limousin" />
+{{else}}
+    <img class="centreImage" src="/image/logo2.jpg" alt="Covoiturage IUT" title="Covoiturage IUT Limousin" />
+{{/if}}
