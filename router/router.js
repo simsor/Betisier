@@ -78,6 +78,7 @@ module.exports = function(app){
     app.get('/ajouterPersonne', checkConnecte, PersonneController.AjouterPersonne);
     app.post('/ajouterPersonne', checkConnecte, PersonneController.AjouterPersonneOk);
    app.get('/detailPersonne/:num', PersonneController.DetailPersonne);
+   app.get('/supprimerPersonne/:per_num', checkAdmin, PersonneController.SupprimerPersonne);
 
 // tout le reste
   app.get('*', HomeController.Index);

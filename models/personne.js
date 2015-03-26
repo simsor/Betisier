@@ -1,6 +1,7 @@
 // appel du module pour le cryptage du mot de passe
 var crypto=require('crypto');
 var db = require('../configDb');
+var etudiant = require('./etudiant')
 
 
 /*
@@ -82,3 +83,35 @@ module.exports.addPersonne = function(data, callback) {
 			console.log("Impossible de se connecter");
 	});
 }
+
+module.exports.deletePersonne = function (per_num, callback) {
+	// connexion à la BD
+	db.getConnection (function(err, connexion) {
+		if (! err) {
+
+			// on regarde si la personne est un étudiant ou bien un salarié
+			etudiant.getEtudiantByPerNum(per_num, function(err, result) {
+				if (err) {
+					console.log(err);
+				}
+				else {
+					if (result==undefined) {
+						var requete = "DELETE from salarie WHERE per_num="+connexion.escape(per_num);
+					} else {
+						var requete = "DELETE from etudiant WHERE per_num="+connexion.escape(per_num);
+					}
+					connexion.query(requete, function(err, result){
+						// on supprime ensuite la personne dans la table personne
+						var requete = "DELETE from personne WHERE per_num="+connexion.escape(per_num);
+					});
+				};
+			});
+		};
+			// envoi de la requete a la BD
+			connexion.query(requete, callback);
+
+			// la connexion est renvoyée dans le pool de connexions
+			connexion.release();
+		}
+	});
+};

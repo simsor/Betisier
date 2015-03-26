@@ -32,6 +32,12 @@
         {{/if}}
      </tr>
  {{#each listeVille}} <!--  parcours de listeVille -->
-    <tr><td>{{this.vil_num}}</td><td>{{this.vil_nom}}</td><td><a href="supprimerVille/{{this.vil_num}}"><img src="/image/erreur.png" alt="invalide!" ></a></td></tr>
+    <tr>
+      <td>{{this.vil_num}}</td>
+      <td>{{this.vil_nom}}</td>
+      {{#if ../session.admin}}<td>
+        <a href="supprimerVille/{{this.vil_num}}"><img src="/image/erreur.png" alt="invalide!" ></a></td>
+      {{/if}}
+    </tr>
  {{/each}}
  </table>
