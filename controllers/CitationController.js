@@ -232,7 +232,7 @@ module.exports.FormulaireRechercherCitation = function(request, response){
 
 
 module.exports.RechercherCitation = function(request, response) {
-    reponse.title = "Rechercher des citations";
+    response.title = "Rechercher des citations";
     
     model.rechercherCitation(request.body.per_num, request.body.cit_date, request.body.moyenne, function(err, result) {
 	if (err) {

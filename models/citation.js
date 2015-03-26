@@ -94,7 +94,6 @@ module.exports.rechercherCitation = function(per_num, cit_date, moy, callback) {
 	    
 	    requete = "SELECT p.per_num, c.cit_num, per_nom, per_prenom, cit_libelle, date_format(cit_date, '%d/%m/%Y') as cit_date, AVG(vot_valeur) as moyenne FROM citation c JOIN personne p ON c.per_num=p.per_num LEFT OUTER JOIN vote v ON v.cit_num=c.cit_num "+ where_requete +" GROUP BY c.cit_num, per_nom, per_prenom, cit_libelle, cit_date " + having_requete;
 
-	    console.log(requete);
 	    connexion.query(requete, callback);
 	    connexion.release();
 	}
