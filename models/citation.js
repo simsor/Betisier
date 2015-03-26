@@ -1,4 +1,5 @@
 var db = require('../configDb');
+var f = require("../fonctions.js");
 
 module.exports.getListeCitations = function (callback) {
   // connexion à la BD
@@ -65,6 +66,36 @@ module.exports.supprimerCitation = function(cit_num, callback) {
 	if (!err) {
 	    connexion.query("DELETE FROM citation WHERE cit_num=" + connexion.escape(cit_num), callback);
 	    
+	    connexion.release();
+	}
+    });
+};
+
+module.exports.rechercherCitation = function(per_num, cit_date, moy, callback) {
+    db.getConnection(function(err, connexion) {
+	if(!err) {
+	    var where = [], where_requete = "";
+	    var having = [], having_requete = "";
+	    var requete = "";
+	    if (per_num != -1)
+		where.push("p.per_num="+connexion.escape(per_num));
+
+	    if(cit_date != -1)
+		where.push("cit_date="+connexion.escape(f.getIsoDate(cit_date)));
+
+	    if(moy != -1)
+		having.push("moyenne > " + connexion.escape(parseInt(moy) - 1) + " AND moyenne < " + connexion.escape(parseInt(moy) + 1));
+
+	    if (where.length > 0)
+		where_requete = "WHERE " + where.join(" AND ");
+
+	    if (having.length > 0)
+		having_requete = "HAVING " + having.join(" AND ");
+	    
+	    requete = "SELECT p.per_num, c.cit_num, per_nom, per_prenom, cit_libelle, date_format(cit_date, '%d/%m/%Y') as cit_date, AVG(vot_valeur) as moyenne FROM citation c JOIN personne p ON c.per_num=p.per_num LEFT OUTER JOIN vote v ON v.cit_num=c.cit_num "+ where_requete +" GROUP BY c.cit_num, per_nom, per_prenom, cit_libelle, cit_date " + having_requete;
+
+	    console.log(requete);
+	    connexion.query(requete, callback);
 	    connexion.release();
 	}
     });

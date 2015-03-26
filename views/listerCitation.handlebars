@@ -9,7 +9,12 @@
     <th>Libellé</th>
     <th>Date</th>
     <th>Moyenne des notes</th>
-    <th>Noter</th>
+    {{#if session.etudiant}}
+      <th>Noter</th>
+    {{/if}}
+    {{#if session.admin}}
+      <th>Supprimer</th>
+    {{/if}}
   </tr>
 
   {{#each listeCitation}}
@@ -18,11 +23,17 @@
     <td>{{this.cit_libelle}}</td>
     <td>{{this.cit_date}}</td>
     <td>{{this.moyenne}}</td>
+    {{#if ../session.etudiant}}
       {{#if this.dejaVote}}
-        <td><a href="supprimerNoteCitation/{{this.cit_num}}"><img src="/image/erreur.png" alt="invalide!" ></a></td>
+        <td><a href="supprimerNoteCitation/{{this.cit_num}}"><img src="/image/erreur.png" alt="invalide!" title="Supprimer votre note" ></a></td>
       {{else}}
-        <td><a href="noterCitation/{{this.cit_num}}"><img src="/image/modifier.png" alt="modifier!" ></a></td>
+        <td><a href="noterCitation/{{this.cit_num}}"><img src="/image/modifier.png" alt="modifier!" title="Noter"></a></td>
       {{/if}}
+    {{/if}}
+    
+    {{#if ../session.admin}}
+      <td><a href="/supprimerCitation/{{this.cit_num}}/listerCitation"><img src="/image/erreur.png" alt="supprimer" title="Supprimer la citation"/></a></td>
+    {{/if}}
   </tr>
   {{/each}}
 </table>

@@ -104,14 +104,13 @@ module.exports.deletePersonne = function (per_num, callback) {
 						// on supprime ensuite la personne dans la table personne
 						var requete = "DELETE from personne WHERE per_num="+connexion.escape(per_num);
 					});
-				};
+				}
 			});
-		};
+		}
 			// envoi de la requete a la BD
 			connexion.query(requete, callback);
 
 			// la connexion est renvoyée dans le pool de connexions
 			connexion.release();
-		}
 	});
 };

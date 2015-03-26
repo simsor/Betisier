@@ -10,35 +10,35 @@ function checkConnecte(req, res, next) {
     if (req.session.connected)
 	return next();
     else
-	return res.redirect("/");
+	return res.redirect("/403");
 }
 
 function checkEtudiant(req, res, next) {
     if (req.session.etudiant)
 	return next();
     else
-	return res.redirect("/");
+	return res.redirect("/403");
 }
 
 function checkSalarie(req, res, next) {
     if (req.session.salarie)
 	return next();
     else
-	return res.redirect("/");
+	return res.redirect("/403");
 }
 
 function checkEtudiantOuSalarie(req, res, next) {
     if (req.session.etudiant || req.session.salarie)
 	return next();
     else
-	return res.redirect("/");
+	return res.redirect("/403");
 }
 
 function checkAdmin(req, res, next) {
     if (req.session.admin)
 	return next();
     else
-	return res.redirect("/");
+	return res.redirect("/403");
 }
 
 // Routes
@@ -51,14 +51,15 @@ module.exports = function(app){
     app.get('/listerCitation', CitationController.ListerCitation);
     app.get('/ajouterCitation', checkEtudiant, CitationController.AjouterCitation);
     app.post('/ajouterCitation', checkEtudiant, CitationController.VerifierCitation);
-    app.get('/rechercherCitation', checkConnecte, CitationController.RechercherCitation);
+    app.get('/rechercherCitation', checkConnecte, CitationController.FormulaireRechercherCitation);
+    app.post('/rechercherCitation', checkConnecte, CitationController.RechercherCitation);
     app.get('/validerCitation', checkAdmin, CitationController.ValiderCitation);
     app.get('/validerCitationOK/:cit_num', checkAdmin, CitationController.ValiderCitationOK);
-    app.get('/supprimerCitation/:cit_num', checkAdmin, CitationController.SupprimerCitation);
+    app.get('/supprimerCitation/:cit_num/:page', checkAdmin, CitationController.SupprimerCitation);
     app.get('/rechercherCitation', CitationController.RechercherCitation);
-    app.get('/noterCitation/:cit_num', CitationController.ModifierNote);
-    app.post('/noterCitation/:cit_num', CitationController.NoteOK);
-    app.get('/supprimerNoteCitation/:cit_num', CitationController.SupprimerNote);
+    app.get('/noterCitation/:cit_num', checkEtudiant, CitationController.ModifierNote);
+    app.post('/noterCitation/:cit_num', checkEtudiant, CitationController.NoteOK);
+    app.get('/supprimerNoteCitation/:cit_num', checkEtudiant, CitationController.SupprimerNote);
 
  // villes
    app.get('/listerVille', VilleController.ListerVille);
@@ -73,15 +74,16 @@ module.exports = function(app){
     app.get('/deconnect', checkConnecte, ConnectController.Deconnect);
 
 
- //personne
-   app.get('/listerPersonne', PersonneController.ListerPersonne);
+    //personne
+    app.get('/listerPersonne', PersonneController.ListerPersonne);
     app.get('/ajouterPersonne', checkConnecte, PersonneController.AjouterPersonne);
     app.post('/ajouterPersonne', checkConnecte, PersonneController.AjouterPersonneOk);
    app.get('/detailPersonne/:num', PersonneController.DetailPersonne);
    app.get('/supprimerPersonne/:per_num', checkAdmin, PersonneController.SupprimerPersonne);
 
-// tout le reste
-  app.get('*', HomeController.Index);
-  app.post('*', HomeController.Index);
-
+    // tout le reste
+    app.get("/403", HomeController.NotAllowed);
+    app.post("/403", HomeController.NotAllowed);
+    app.get('*', HomeController.NotFound);
+    app.post('*', HomeController.NotFound);
 };

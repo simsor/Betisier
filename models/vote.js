@@ -1,5 +1,22 @@
 var db = require('../configDb');
 
+module.exports.getListeVote = function(callback) {
+    // connexion à la BD
+    db.getConnection (function(err, connexion) {
+	if (! err) {
+
+	    // on récupère tous les votes par personne
+	    var requete = "SELECT * from vote";
+	    // envoi de la requete a la BD
+	    connexion.query(requete, callback);
+	    
+	    // la connexion est renvoyée dans le pool de connexions
+	    connexion.release();
+	}
+    });
+};
+
+
 module.exports.getListeVoteByPerNum = function (per_num, callback) {
   // connexion à la BD
   db.getConnection (function(err, connexion) {
